@@ -1,0 +1,40 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xcuserdata
+*.xcuserdatad
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+.DS_Store
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
+#
+BoardBlog/Pods/
+BoardBlog/Podfile.lock
+BoardBlog/BoardBlog.xcworkspace
+Pods/
+Podfile.lock
+BoardBlog.xcworkspace
+BoardBlog/BoardBlog.xcworkspace/xcuserdata/
+BoardBlog/BoardBlog.xcodeproj/xcuserdata/
+BoardBlog/Pods/Pods.xcodeproj/xcuserdata/
+BoardBlog.xcworkspace/xcuserdata/
+BoardBlog.xcodeproj/xcuserdata/
+Pods/Pods.xcodeproj/xcuserdata/
