@@ -15,7 +15,7 @@ class WhiteboardViewController: UIViewController {
     
     // Configure access token manually for testing, if desired! Create one manually in the console
     // at https://www.twilio.com/console/video/runtime/testing-tools
-    private var accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2Q5MWZlM2Y4N2RlZWQ1NzI0MmJjMGE4MDc2ZTBhZGRkLTE2NTMwNTUxMzEiLCJpc3MiOiJTS2Q5MWZlM2Y4N2RlZWQ1NzI0MmJjMGE4MDc2ZTBhZGRkIiwic3ViIjoiQUNmNTk5YmIzOWJlZjk2NWVhZmNiNTlkOTEyODdiODY0OSIsImV4cCI6MTY1MzA1ODczMSwiZ3JhbnRzIjp7ImlkZW50aXR5IjoibGV0aWxldGkiLCJ2aWRlbyI6eyJyb29tIjoiY29vbFJvb20ifX19.ZVaLeawHeQ1qaKumuqe-8zHPuDvgzhY7YAmcnUGvFlI"
+    private var accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2Q5MWZlM2Y4N2RlZWQ1NzI0MmJjMGE4MDc2ZTBhZGRkLTE2NTM2NzIxNjciLCJpc3MiOiJTS2Q5MWZlM2Y4N2RlZWQ1NzI0MmJjMGE4MDc2ZTBhZGRkIiwic3ViIjoiQUNmNTk5YmIzOWJlZjk2NWVhZmNiNTlkOTEyODdiODY0OSIsImV4cCI6MTY1MzY3NTc2NywiZ3JhbnRzIjp7ImlkZW50aXR5IjoibGV0aSIsInZpZGVvIjp7InJvb20iOiJjb29sUm9vbSJ9fX0.hYtLb2N-P2sgDhb7EYpHfhSUyEVYkHUC8v1UeujPz9g"
 
     // PencilKit
     private var toolPicker: PKToolPicker!
