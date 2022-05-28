@@ -131,7 +131,7 @@ extension WhiteboardViewController: PKCanvasViewDelegate, PKToolPickerObserver {
 }
 ```
 
-And set needToStoreOnDB back to false:
+And set `needToStoreOnDB` back to false:
 
 ```
 extension WhiteboardViewController: RemoteDataTrackDelegate {
