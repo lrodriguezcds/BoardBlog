@@ -143,11 +143,11 @@ extension WhiteboardViewController: RemoteDataTrackDelegate {
 }
 ```
 
-# Run the app to see the final result..
+# Final result
 
 ![](whiteboardgif.gif)
 
-Extra/Disclaimer: 
+## Extra/Disclaimer: 
 
 To test the project out you need to generate a twilio access token and replace it on the accessToken variable on the `WhiteboardViewController`. Since each token is unique for each participant, if you would like to test it for two users (participants) you need to generate one access token, replace it on the code and run the app in one simulator, generate another access token and run the app again on a different simulator (or device). Don’t forget to change the Name (`CLIENT IDENTITY`) on the [Twilio Console](https://console.twilio.com/us1/develop/video/manage/video-credentials?frameUrl=%2Fconsole%2Fvideo%2Fproject%2Ftesting-tools%3Fx-target-region%3Dus1) and set a cool name for your room before generating the access token 😉. 
 
