@@ -9,12 +9,12 @@ We will build a collaborative whiteboard using PencilKit and Twilio Data Track!
 ## PencilKit
 PencilKit provides a drawing environment for an iOS app that receives input from Apple Pencil or the user's finger and turns it into images you display in iPadOS, iOS, or macOS. 
 
-## Twilio Data track
+## Twilio DataTrack
 Twilio DataTrack is the mechanism/gateway that we are going to use to send the drawings, that the local participant has drawn, to the other users in order to share it in real time.
 
 # Code
 
-Twilio Data Track it's a subcomponent of the TwilioVideo library so we need to add TwilioVideo library in the podfile in order to use TwilioData Track. 
+Twilio DataTrack it's a subcomponent of the TwilioVideo library so we need to add TwilioVideo library in the podfile in order to use TwilioData Track. 
 
 ```pod 'TwilioVideo', '4.6.2```
 
