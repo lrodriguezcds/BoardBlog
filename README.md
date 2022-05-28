@@ -1,8 +1,8 @@
 # BoardBlog
 
-A couple of months ago we had to build a collaborative whiteboard and we were surprised when we found out how easy its implementation was using PencilKit and Twilio Data Track!
-
 The idea is to implement a simple whiteboard that users can access from multiple devices. When any of the connected users draws on it, the others will immediately display the drawing.
+
+We will build a collaborative whiteboard using PencilKit and Twilio Data Track!
 
 # Tools used for for this project
 
