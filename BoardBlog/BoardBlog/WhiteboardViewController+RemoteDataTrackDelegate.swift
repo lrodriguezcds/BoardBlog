@@ -14,28 +14,17 @@ extension WhiteboardViewController: RemoteDataTrackDelegate {
     func remoteDataTrackDidReceiveString(remoteDataTrack: RemoteDataTrack, message: String) {
         print("remoteDataTrack:didReceiveString: \(message)" )
         
-        if let data = message.data(using: .utf8) {
-            processJsonData(remoteDataTrack, message: data)
-        }
-    }
-    
-    func processJsonData(_ remoteDataTrack: RemoteDataTrack, message: Data) {
         needToStoreOnDB = false
+        
         do {
-            if let jsonDictionary = try JSONSerialization.jsonObject(with: message, options: []) as? [String: AnyObject] {
-                print("processJsonData: \(jsonDictionary)" )
-                
-                if let drawing = jsonDictionary["drawing"] as? String {
-                    print(drawing)
-                    guard let markupData = Data(base64Encoded: drawing) else { return }
-                    
-                    // Here we set the drawing get from the data parameter
-                    let pkDrawing = try PKDrawing(data: markupData)
-                    canvasView.drawing = pkDrawing
-                }
-            }
+            // Generate the data from the message string (which is the drawing)
+            guard let markupData = Data(base64Encoded: message) else { return }
+            // Generate the PKDrawing from the data previously created
+            let pkDrawing = try PKDrawing(data: markupData)
+            // Here we set the drawing on the canvas
+            canvasView.drawing = pkDrawing
         } catch {
-            print("Error: processJsonData \(error)")
+            print("Error: \(error)")
         }
     }
 }

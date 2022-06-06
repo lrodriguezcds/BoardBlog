@@ -15,8 +15,8 @@ class WhiteboardViewController: UIViewController {
     
     // Configure access token manually for testing, if desired! Create one manually in the console
     // at https://www.twilio.com/console/video/runtime/testing-tools
-    private var accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2Q5MWZlM2Y4N2RlZWQ1NzI0MmJjMGE4MDc2ZTBhZGRkLTE2NTM2NzIxNjciLCJpc3MiOiJTS2Q5MWZlM2Y4N2RlZWQ1NzI0MmJjMGE4MDc2ZTBhZGRkIiwic3ViIjoiQUNmNTk5YmIzOWJlZjk2NWVhZmNiNTlkOTEyODdiODY0OSIsImV4cCI6MTY1MzY3NTc2NywiZ3JhbnRzIjp7ImlkZW50aXR5IjoibGV0aSIsInZpZGVvIjp7InJvb20iOiJjb29sUm9vbSJ9fX0.hYtLb2N-P2sgDhb7EYpHfhSUyEVYkHUC8v1UeujPz9g"
-
+    private var accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2Q5MWZlM2Y4N2RlZWQ1NzI0MmJjMGE4MDc2ZTBhZGRkLTE2NTQ0ODM1NTIiLCJpc3MiOiJTS2Q5MWZlM2Y4N2RlZWQ1NzI0MmJjMGE4MDc2ZTBhZGRkIiwic3ViIjoiQUNmNTk5YmIzOWJlZjk2NWVhZmNiNTlkOTEyODdiODY0OSIsImV4cCI6MTY1NDQ4NzE1MiwiZ3JhbnRzIjp7ImlkZW50aXR5IjoibGV0aSIsInZpZGVvIjp7InJvb20iOiJjb29sUm9vbSJ9fX0.lkZcJMxZ2mVsTKlzeeJugrnKneNVCLEgqpacN6bZ3Vo"
+    
     // PencilKit
     private var toolPicker: PKToolPicker!
     
@@ -25,10 +25,10 @@ class WhiteboardViewController: UIViewController {
     
     var room: Room?
     var localParticipant: LocalParticipant?
-
+    
     // Generic
     var needToStoreOnDB = false
-
+    
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +45,7 @@ class WhiteboardViewController: UIViewController {
     // MARK: Private Methods
     
     private func connectToARoom() {
-        let dataTrackOptions = DataTrackOptions() { (builder) in
-            builder.isOrdered = true
+        let dataTrackOptions = DataTrackOptions() { builder in
             builder.name = "Draw"
         }
         
@@ -56,12 +55,14 @@ class WhiteboardViewController: UIViewController {
         let connectOptions = ConnectOptions(token: accessToken) { builder in
             
             builder.dataTracks = [self.localDataTrack]
-
-            // The name of the Room where the Client will attempt to connect to. Please note that if you pass an empty
-            // Room `name`, the Client will create one for you. You can get the name or sid from any connected Room
+            
+            // The name of the Room where the Client will attempt to connect to.
+            // Please note that if you pass an empty Room `name`,
+            // the Client will create one for you.
+            // You can get the name or sid from any connected Room
             builder.roomName = "coolRoom"
         }
-
+        
         // Connect to the Room using the options we provided.
         room = TwilioVideoSDK.connect(options: connectOptions,
                                       delegate: self)
@@ -84,33 +85,16 @@ class WhiteboardViewController: UIViewController {
         // Make our inputCanvasView firstResponder.
         canvasView.becomeFirstResponder()
     }
-    
-    // MARK: Public Methods
-    
-    func set(localdatatrack: LocalDataTrack) {
-        self.localDataTrack = localdatatrack
-    }
-    
-    // MARK: Helpers
-    
-    /// Sends the drawig information as a jsonString using Twilio Data Track
-    func send(_ dictionary: Dictionary<String, Any>,
-                             _ localDrawingsDataTrack: LocalDataTrack?) {
-        let tmp = dictionary.description.replacingOccurrences(of: "[", with: "{")
-        let jsonString = tmp.replacingOccurrences(of: "]", with: "}")
-        localDrawingsDataTrack?.send(jsonString)
-    }
 }
 
 extension WhiteboardViewController: PKCanvasViewDelegate, PKToolPickerObserver {
     /// Delegate method: Note that the drawing has changed.
     func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
         guard !canvasView.drawing.bounds.isEmpty else { return }
-                
+        
         if needToStoreOnDB {
-            var dictionary = [String: Any]()
-            dictionary["drawing"] = canvasView.drawing.base64EncodedString()
-            send(dictionary, localDataTrack)
+            let base64Drawing = canvasView.drawing.base64EncodedString()
+            localDataTrack.send(base64Drawing)
         }
     }
     
